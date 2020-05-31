@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>title</title>
+	<title>Accesible Game Menu</title>
 	<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -92,6 +92,21 @@
   		for (let i = 0; i < arr.length; i++) {
   			let button = document.createElement("button");
   			button.textContent = arr[i];
+  			button.addEventListener("click", () => {
+  				let currentChoice = button.textContent;
+	 			if (g.get(currentChoice).length > 0) {
+	  				console.log("valid new menu");
+
+	  				// Sets the menu to the new set of choices
+	  				m = new Menu(g.get(currentChoice).slice(0));
+
+	  				// Display the new menu
+	  				displayChoices(m.getChoices());
+	  			} else {
+	  				console.log("invalid new menu");
+	  			}
+	  			updateSelectedMenu(button.textContent);
+  			})
   			document.getElementById("menu").appendChild(button);
   		}
   	}
